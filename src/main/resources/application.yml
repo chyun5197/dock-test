@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true # 테이블 생성 후에 data.sql 실행
+  datasource:
+    url: jdbc:h2:mem:testdb # 스프링 부트 서버
+#    url: jdbc:h2:tcp://localhost/~/test # 설치한 h2 DB를 터미널로 켜줘서 실행하는 서버
+#    username: sa
+  h2:
+    console:
+      enabled: true
