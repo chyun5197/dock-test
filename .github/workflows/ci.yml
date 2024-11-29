@@ -26,26 +26,30 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
 
-      # yml
-      - name: Create and Upload application.yml
+#      # yml
+#      - name: Create and Upload application.yml
+#        run: |
+#          touch ./src/main/resources/application.yml
+#          echo -e "${{secrets.APPLICATION}}" | base64 --decode > ./src/main/resources/application.yml
+#      - uses: actions/upload-artifact@v4
+#        with:
+#          name: application.yml
+#          path: ./src/main/resources/application.yml
+#          retention-days:
+      - name: Set YML
         run: |
-          touch ./src/main/resources/application.yml
-          echo -e "${{secrets.APPLICATION}}" | base64 --decode > ./src/main/resources/application.yml
-      - uses: actions/upload-artifact@v4
-        with:
-          name: application.yml
-          path: ./src/main/resources/application.yml
-          retention-days:
+          echo "${{ secrets.APPLICATION }}" | base64 --decode > src/main/resources/application.yml
+          find src
 
       #sql
-      - name: Create and Upload data.sql
-        run: |
-          touch ./src/main/resources/data.sql
-          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/main/resources/data.sql
-      - uses: actions/upload-artifact@v4
-        with:
-          name: data.sql
-          path: ./src/main/resources/data.sql
+#      - name: Create and Upload data.sql
+#        run: |
+#          touch ./src/main/resources/data.sql
+#          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/main/resources/data.sql
+#      - uses: actions/upload-artifact@v4
+#        with:
+#          name: data.sql
+#          path: ./src/main/resources/data.sql
 
       # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
       - name: Setup Gradle
