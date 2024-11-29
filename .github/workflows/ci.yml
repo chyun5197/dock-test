@@ -40,8 +40,8 @@ jobs:
       # sql
       - name: Create and Upload data.sql
         run: |
-          touch ./src/test/resources/data.sql
-          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/test/resources/data.sql
+          touch ./src/main/resources/data.sql
+          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/main/resources/data.sql
       - uses: actions/upload-artifact@v4
         with:
           name: data.sql
