@@ -37,7 +37,7 @@ jobs:
         with:
           name: application.yml
           path: ./src/main/resources/application.yml
-#          retention-days: 1aa
+#          retention-days:
 
       # sql
       - name: Create and Upload data.sql
