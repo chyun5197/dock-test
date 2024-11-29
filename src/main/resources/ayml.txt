@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true # 테이블 생성 후에 dat.txt 실행
+  datasource:
+    url: jdbc:h2:mem:testdb # 스프링 부트 서버
+  h2:
+    console:
+      enabled: true

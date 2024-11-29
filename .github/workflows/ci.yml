@@ -14,7 +14,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Git checkout
+      - name: Git Checkout
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -23,11 +23,39 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      # yml
+      - name: Create and Upload application.yml
+        run: |
+          touch ./src/main/resources/application.yml
+          echo -e "${{secrets.APPLICATION}}" | base64 --decode > ./src/main/resources/application.yml
+
+      - name: Upload application.yml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: application.yml
+          path: ./src/main/resources/application.yml
+#          retention-days: 1
+
+      # sql
+      - name: Create and Upload data.sql
+        run: |
+          touch ./src/test/resources/data.sql
+          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/test/resources/data.sql
+
+      - name: Upload data.sql
+      - uses: actions/upload-artifact@v4
+        with:
+          name: data.sql
+          path: ./src/main/resources/data.sql
+
       # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
-      - name: Build with Gradle Wrapper
+      - name: Build with Gradle
         run: |
           chmod +x ./gradlew
           ./gradlew clean build -x test
