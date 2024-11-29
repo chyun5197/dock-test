@@ -37,12 +37,15 @@ jobs:
           path: ./src/main/resources/application.yml
           retention-days:
 
-#      - name: Set YMLdㄹ
-#        run: |
-#          echo "${{ secrets.APPLICATION }}" | base64 --decode > src/main/resources/application.yml
-#          find src
-
-
+      #sql
+      - name: Create and Upload data.sql
+        run: |
+          touch ./src/main/resources/data.sql
+          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/main/resources/data.sql
+      - uses: actions/upload-artifact@v4
+        with:
+          name: data.sql
+          path: ./src/main/resources/data.sql
 
       # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
       - name: Setup Gradle
