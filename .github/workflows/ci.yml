@@ -71,7 +71,7 @@ jobs:
       - name: Push to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/hyun
 
-      # EC2 배포
+      # EC2 배포ㅁ
       - name: Docker image pull & Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
