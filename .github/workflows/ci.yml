@@ -37,7 +37,7 @@ jobs:
           path: ./src/main/resources/application.yml
           retention-days:
 
-#      - name: Set YMLd
+#      - name: Set YMLdㄹ
 #        run: |
 #          echo "${{ secrets.APPLICATION }}" | base64 --decode > src/main/resources/application.yml
 #          find src
