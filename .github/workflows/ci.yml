@@ -29,9 +29,8 @@ jobs:
       # yml
       - name: Create and Upload application.yml
         run: |
-          cd ./src/main/resources
-          touch ./application.yml
-          echo -e "${{secrets.APPLICATION}}" | base64 --decode > ./application.yml
+          touch ./src/main/resources/application.yml
+          echo -e "${{secrets.APPLICATION}}" | base64 --decode > ./src/main/resources/application.yml
       - uses: actions/upload-artifact@v4
         with:
           name: application.yml
@@ -41,9 +40,8 @@ jobs:
       #sql
       - name: Create and Upload data.sql
         run: |
-          cd ./src/main/resources
-          touch /data.sql
-          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > /data.sql
+          touch ./src/main/resources/data.sql
+          echo -e "${{secrets.DATA_SQL}}" | base64 --decode > ./src/main/resources/data.sql
       - uses: actions/upload-artifact@v4
         with:
           name: data.sql
